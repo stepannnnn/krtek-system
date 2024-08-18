@@ -24,13 +24,6 @@ class Guest(models.Model):
     def __str__(self):
         return self.name
     
-    def pay_unpaid(self):
-        unpaid = Orders.objects.filter(guest=self, paid=False)
-        self.already_paid += self.to_pay
-        self.to_pay = 0
-        for order in unpaid:
-            order.paid = True
-            order.save()
 
     
 class Orders(models.Model):

@@ -1,17 +1,16 @@
 <h1>{{guest.name}} have to pay {{guest.to_pay}}</h1>
 
-<form action="{{% url %}}" method="post">
+<form action="{% url 'orders:paying' guest.id%}" method="post">
     {% csrf_token %}
     <input type="submit" value="Pay">
 </form>
 
 
-
 <h2>Here is list of unpayed items</h2>
-{% if items_list %}
+{% if unpaid_history %}
 <ul>
-    {% for item in items_list %}
-    <li>{{item.name}}  {{item.price.}}</li>
+    {% for order in unpaid_history %}
+    <li>{{order.item.name}} for {{order.item.price}}</li>
     {% endfor %}
 </ul>
 {% else %}  

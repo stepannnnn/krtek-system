@@ -3,6 +3,10 @@ from django.db.models.query import QuerySet
 from django.shortcuts import render
 from django.views import generic
 from .models import Guest, Item, Orders
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from django.utils import timezone
+
 
 # Create your views here.
 
@@ -13,15 +17,29 @@ class IndexView(generic.ListView):
     def get_queryset(self):
         return Guest.objects.filter(active=True)
     
+    
 
 class ChooseItemView(generic.ListView):
     template_name = "orders/choose_item.html"
     context_object_name = "items_list"
     def get_queryset(self):
         return Item.objects.filter(available=True)
-
-
     
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        context['guest'] = Guest.objects.get(pk=self.kwargs['pk'])
+        return context
+
+def ordering(request, pk):
+    selected_guest = Guest.objects.get(pk=pk)
+    selected_item = Item.objects.get(pk=request.POST["item_id"])
+    order=Orders(guest=selected_guest, item=selected_item, quantity=1, total=selected_item.price*1, paid=False, time=timezone.now())
+    order.save()
+    selected_guest.to_pay += selected_item.price
+    selected_guest.save()
+    context = {"guest": selected_guest, "item": selected_item, "order": order}
+    return render(request, "orders/ordering.html", context)
+
 
 
 class DetailView(generic.DetailView):
@@ -56,4 +74,13 @@ class AllHistoryViev(generic.ListView):
     def get_queryset(self):
         return Orders.objects.order_by('time')
 
-    
+def paying(request, pk):
+    unpaid = Orders.objects.filter(guest=pk, paid=False)
+    guest = Guest.objects.get(pk=pk)
+    guest.already_paid += guest.to_pay
+    guest.to_pay = 0
+    for order in unpaid:
+        order.paid = True
+        order.save()
+    guest.save()
+    return HttpResponseRedirect(reverse('orders:pay', args=(pk,)))

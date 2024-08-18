@@ -7,16 +7,21 @@ from .models import Guest, Item, Orders
 # Create your views here.
 
 class IndexView(generic.ListView):
-    model = Guest
     template_name = "orders/index.html"
     context_object_name = "guest_list"
 
+    def get_queryset(self):
+        return Guest.objects.filter(active=True)
     
 
 class ChooseItemView(generic.ListView):
-    model = Item
     template_name = "orders/choose_item.html"
     context_object_name = "items_list"
+    def get_queryset(self):
+        return Item.objects.filter(available=True)
+
+
+    
 
 
 class DetailView(generic.DetailView):
@@ -30,6 +35,11 @@ class PayView(generic.ListView):
     def get_queryset(self):
         self.guest = Guest.objects.get(pk=self.kwargs['pk'])
         return Orders.objects.filter(guest=self.guest, paid=False)
+
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        context['guest'] = self.guest
+        return context
     
 class GuestHistoryView(generic.ListView):
     template_name = "orders/guest_history.html"
@@ -46,5 +56,4 @@ class AllHistoryViev(generic.ListView):
     def get_queryset(self):
         return Orders.objects.order_by('time')
 
-        
     

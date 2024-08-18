@@ -1,0 +1,19 @@
+<h1>{{guest.name}} have to pay {{guest.to_pay}}</h1>
+
+<form action="{{% url %}}" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Pay">
+</form>
+
+
+
+<h2>Here is list of unpayed items</h2>
+{% if items_list %}
+<ul>
+    {% for item in items_list %}
+    <li>{{item.name}}  {{item.price.}}</li>
+    {% endfor %}
+</ul>
+{% else %}  
+    <p>No Items to pay</p>
+{% endif %}

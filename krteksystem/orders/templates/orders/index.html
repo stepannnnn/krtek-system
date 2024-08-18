@@ -1,0 +1,9 @@
+{% if guest_list %}
+<ul>
+    {% for guest in guest_list %}
+    <li><a href="{% url 'orders:choose_item' guest.id %}">{{ guest.name }}<a></li>
+    {% endfor %}
+</ul>
+{% else %}  
+    <p>No guests are available.</p>
+{% endif %}

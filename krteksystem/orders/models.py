@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 
@@ -36,4 +37,7 @@ class Orders(models.Model):
 
     def __str__(self):
         return f'{self.guest.name} ordered {self.quantity} {self.item.name}'
+    
+    def was_placed_today(self):
+        return bool(self.time.date() == timezone.now().date())
     

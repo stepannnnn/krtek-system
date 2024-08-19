@@ -65,14 +65,18 @@ class GuestHistoryView(generic.ListView):
 
     def get_queryset(self):
         self.guest = Guest.objects.get(pk=self.kwargs['pk'])
-        return Orders.objects.filter(guest=self.guest)
+        return Orders.objects.filter(guest=self.guest).order_by('-time')
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        context['guest'] = self.guest
+        return context
     
 class AllHistoryViev(generic.ListView):
     template_name = "orders/all_history.html"
     context_object_name = "all_history"
 
     def get_queryset(self):
-        return Orders.objects.order_by('time')
+        return Orders.objects.order_by('-time')
 
 def paying(request, pk):
     unpaid = Orders.objects.filter(guest=pk, paid=False)

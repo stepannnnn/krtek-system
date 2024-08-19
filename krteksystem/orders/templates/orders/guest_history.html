@@ -1,0 +1,18 @@
+<h1>Order hisroty of {{guest.name}}</h1>
+<table>
+    <tr>
+        <th>Item</th>
+        <th>Price</th>
+        <th>Order time</th>
+        <th>Order date</th>
+        <th>Payed?</th>
+    </tr>
+    {% for order in guest_history %}
+    <tr>
+        <td>{{order.item.name}}</td>
+        <td>{{order.item.price|floatformat}}</td>
+        <td>{{order.time|date:"H:i:s"}}</td>
+        <td>{% if order.was_placed_today%} Today {%else%} {{order.time|date:"j.m.Y"}} {%endif%}</td>
+        <td>{%if order.paid%}Yes{%else%}No{%endif%}</td>
+    </tr>
+    {% endfor %}

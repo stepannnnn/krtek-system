@@ -1,3 +1,7 @@
+{% extends 'orders/base.html' %}
+
+
+{% block content %}
 <h1>You are looking on history of orders</h1>
 <table>
     <tr>
@@ -18,3 +22,5 @@
         <td>{%if order.paid%}Yes{%else%}No{%endif%}</td>
     </tr>
     {% endfor %}
+</table>
+{% endblock %}

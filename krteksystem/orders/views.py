@@ -17,6 +17,11 @@ class IndexView(generic.ListView):
     def get_queryset(self):
         return Guest.objects.filter(active=True)
     
+def guest_action(request, pk):
+    guest = Guest.objects.get(pk=pk)
+    context = {"guest": guest}
+    return render(request, "orders/guest_action.html", context)
+
     
 
 class ChooseItemView(generic.ListView):

@@ -1,8 +1,8 @@
 {% if items_list %}
 <ul>
     {% for item in items_list %}
-    <li>{{item.name}}  {{item.price.}} 
-        <form action="{% url 'orders:ordering' guest.id %}" method="post">
+    <li>{{item.name}} for {{item.price|floatformat}} 
+        <form style="display: inline-block" action="{% url 'orders:ordering' guest.id %}" method="post">
             {% csrf_token %}
             <input type="hidden" name="item_id" value="{{item.id}}">
             <input type="submit" value="ORDER">

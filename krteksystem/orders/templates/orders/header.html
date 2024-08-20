@@ -1,17 +1,45 @@
 {% load static %}
 <!DOCTYPE html>
-<header>
-    <a href=" {% url 'orders:index' %}"><div>
+<header class="header">
+    <div id="homebutton"><a href=" {% url 'orders:index' %}"><div>
         <img src="{% static 'orders/img/home-icon.png' %}">
-    <h1>Krtek-system</h1>
-    <h2>Ordering app</h2>
-    </div></a>
+    <div id="appname">
+        <h1>Krtek-system</h1>
+        <h2>Ordering app</h2>
+    </div>
+    </div></a></div>
     {% if guest %}
-        <h2>Guest: {{guest.name}}</h2>
+    <div id="guest">
+        <h2>Guest: {{guest.name}} (ID: {{guest.id}})</h2>
+        <br>
         <p>To pay: {{guest.to_pay}}</p>
-        <h3>Already paid: {{guest.already_paid}}</p>
-        <a href="{% url 'orders:guest_action' guest.id %}">
-            <button> Back to guest menu </button>
-        </a>
+        <p>Already paid: {{guest.already_paid}}</p>
+    </div>
+        {% if request.resolver_match.url_name != 'guest_action' %}
+            <nav>
+                <ul>
+                    <li><a href="{% url 'orders:index' %}"><button> Back to guest menu </button></a></li>
+                    <li><a href="{% url 'orders:choose_item' guest.id%}"><button>Shop</button></a></li>
+                    <li><a href="{% url 'orders:pay' guest.id%}"><button>Pay</button></a></li>
+                    <li><a href="{% url 'orders:guest_history' guest.id%}"><button>View my history</button></a></li>
+                </ul>
+            </nav>
+        {% else %}
+            <nav>
+                <ul>
+                    {% for i in '0123'|make_list %}
+                        <li><button style="visibility:hidden"></button></li>
+                    {% endfor %} 
+                </ul>
+            </nav>
+        {% endif %}
+        {% else %}
+            <nav>
+                <ul>
+                    {% for i in '0123'|make_list %}
+                        <li><button style="visibility:hidden"></button></li>
+                    {% endfor %} 
+                </ul>
+            </nav>
     {% endif %}
 </header>

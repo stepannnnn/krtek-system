@@ -1,3 +1,84 @@
 body {
     background-color: aqua;
 }
+
+header {
+    background-color: #c1f6fa;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+}
+
+
+header img {
+    width: 5vw 5vw;
+    height: 100px;
+}
+
+
+#appname {
+    display: inline-block;
+    line-height: 1px;
+
+}
+
+#guest {
+    display: inline-block;
+    text-align: center;
+    line-height: 1px;
+}
+
+#guest p {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+header nav {
+    display: block;
+    text-align: right;
+    line-height: 1px;
+    padding-right: 10px;
+}
+
+header nav li {
+    margin-right: 10px;
+    list-style: none;
+}
+
+header nav li button {
+    background-color: #ffbb00;
+    border-width: 2px;
+    border-color: black;
+    cursor: pointer;
+    text-align: center;
+    padding: 15px 32px;
+    border-radius: 10px;
+    width:50%;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+
+
+
+
+
+
+
+
+footer {
+    background-color: #c1f6fa;
+    padding: 10px;
+    text-align: center;
+    display: block;
+}
+
+footer * {
+    display: inline;
+}
+
+footer div {
+    margin-right: 10%;
+    margin-left: 10%;
+}

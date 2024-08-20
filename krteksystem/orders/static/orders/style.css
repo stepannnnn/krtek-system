@@ -2,6 +2,30 @@ body {
     background-color: aqua;
 }
 
+main {
+    align-items: center;
+}
+main h1{
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+main input {
+    background-color: #ffbb00;
+    border-width: 2px;
+    border-color: black;
+    cursor: pointer;
+    text-align: center;
+    padding: 15px 32px;
+    border-radius: 10px;
+    width:50%;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+
+
 header {
     background-color: #c1f6fa;
     padding: 10px;
@@ -31,7 +55,8 @@ header img {
 
 #guest p {
     display: inline-block;
-    margin-right: 10px;
+    margin-right: 5px;
+    margin-left: 5px;
 }
 
 header nav {
@@ -72,6 +97,11 @@ footer {
     padding: 10px;
     text-align: center;
     display: block;
+    margin-top: 20px;
+    position: absolute;
+    bottom: 0;
+    height: 2.5rem;
+    width: 98%;
 }
 
 footer * {

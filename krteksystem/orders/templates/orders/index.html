@@ -1,11 +1,11 @@
 {% extends 'orders/base.html'%}
-
 {% block content %}
+
 <h1> Select guest </h1>
 {% if guest_list %}
 <ul>
     {% for guest in guest_list %}
-    <li><a href="{% url 'orders:guest action' guest.id %}">{{ guest.name }}<a></li>
+    <li><a href="{% url 'orders:guest_action' guest.id %}">{{ guest.name }}<a></li>
     {% endfor %}
 </ul>
 {% else %}  
@@ -14,4 +14,5 @@
 <h1> Or view order history </h1>
 <form action="{% url 'orders:history' %}" method="get">
     <input type="submit" value="View orders history">
+</form>
 {% endblock %}

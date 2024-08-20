@@ -1,6 +1,6 @@
 {% extends 'orders/base.html'%}
-
 {% block content %}
+
 <h1> Chose action for guest {{guest.name}} (ID:{{guest.id}})</h1>
 <form action="{% url 'orders:choose_item' guest.id %}" method="get">
     <input type="submit" value="Shop">
@@ -11,4 +11,8 @@
 <form action="{% url 'orders:guest_history' guest.id %}" method="get">
     <input type="submit" value="View my history">
 </form>
+<form action="{% url 'orders:index' %}" method="get">
+    <input type="submit" value="Back to main menu">
+</form>
+
 {% endblock %}

@@ -6,15 +6,12 @@
         <link rel="stylesheet" href="{% static 'orders/style.css' %}">
     </head>
     <body>
-        <header>
-            {% include "orders/header.html"%}
-        </header>
+        {% include "orders/header.html"%}
+        
         {%block content%}
         {%endblock%}
 
-        <footer>
-            {% include "orders/footer.html"%}
-        </footer>
+        {% include "orders/footer.html"%}
     </body>
 </html>
     

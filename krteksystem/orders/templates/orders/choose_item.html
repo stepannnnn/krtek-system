@@ -1,3 +1,6 @@
+{% extends 'orders/base.html' %}
+{% block content %}
+
 {% if items_list %}
 <ul>
     {% for item in items_list %}
@@ -8,8 +11,10 @@
             <input type="submit" value="ORDER">
         </form>
     </li>
-    {% endfor %}
+    {% endfor %}  
 </ul>
 {% else %}  
     <p>No Items are available.</p>
 {% endif %}
+
+{% endblock %}

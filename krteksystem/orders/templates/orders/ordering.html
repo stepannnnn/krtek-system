@@ -1,3 +1,6 @@
+{% extends 'orders/base.html' %}
+{% block content %}
+
 <h1>Thanks for purchease</h1>
 <h2>User {{guest.name}} ordered {{item.name}} for {{item.price}}. </h2>
 <p>Price vas added to your bill. Now you have {{guest.to_pay}} left to pay.</p>
@@ -6,3 +9,5 @@
     {% csrf_token %}
     <input type="submit" value="Pay here">
 <h2>Order was made at {{order.time|date:"H:i:s  j.m.Y"}}.</h2>
+
+{% endblock %}

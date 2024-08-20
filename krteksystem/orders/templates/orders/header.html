@@ -1,0 +1,17 @@
+{% load static %}
+<!DOCTYPE html>
+<header>
+    <a href=" {% url 'orders:index' %}"><div>
+        <img src="{% static 'orders/img/home-icon.png' %}">
+    <h1>Krtek-system</h1>
+    <h2>Ordering app</h2>
+    </div></a>
+    {% if guest %}
+        <h2>Guest: {{guest.name}}</h2>
+        <p>To pay: {{guest.to_pay}}</p>
+        <h3>Already paid: {{guest.already_paid}}</p>
+        <a href="{% url 'orders:guest_action' guest.id %}">
+            <button> Back to guest menu </button>
+        </a>
+    {% endif %}
+</header>

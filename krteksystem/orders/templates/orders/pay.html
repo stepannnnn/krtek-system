@@ -1,3 +1,6 @@
+{% extends 'orders/base.html' %}
+{% block content %}
+
 <h1>{{guest.name}} have to pay {{guest.to_pay}}</h1>
 
 <form action="{% url 'orders:paying' guest.id%}" method="post">
@@ -16,3 +19,4 @@
 {% else %}  
     <p>No Items to pay</p>
 {% endif %}
+{% endblock %}

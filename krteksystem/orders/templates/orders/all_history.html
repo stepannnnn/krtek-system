@@ -2,13 +2,13 @@
 {% block content %}
 
 <h1>You are looking on history of orders</h1>
-<table>
+<table class="historytable">
     <tr>
         <th>Name</th>
         <th>Item</th>
         <th>Price</th>
         <th>Order time</th>
-        <th>Order date</th>
+        <th>Order dated</th>
         <th>Payed?</th>
     </tr>
     {% for order in all_history %}

@@ -1,7 +1,7 @@
 {% extends 'orders/base.html' %}
 {% block content %}
 
-<h1>{{guest.name}} have to pay {{guest.to_pay}}</h1>
+<h1>{{guest.name}} have to pay {{guest.to_pay|floatformat}}</h1>
 
 <form action="{% url 'orders:paying' guest.id%}" method="post">
     {% csrf_token %}
@@ -11,11 +11,21 @@
 
 <h2>Here is list of unpayed items</h2>
 {% if unpaid_history %}
-<ul>
+    <table class="historytable">
+        <tr>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Order time</th>
+            <th>Order date</th>
+        </tr>
     {% for order in unpaid_history %}
-    <li>{{order.item.name}} for {{order.item.price}}</li>
+        <tr>
+            <td>{{order.item.name}}</td>
+            <td>{{order.item.price|floatformat}}</td>
+            <td>{{order.time|date:"H:i:s"}}</td>
+            <td>{% if order.was_placed_today%} Today {%else%} {{order.time|date:"j.m.Y"}} {%endif%}</td>
+        </tr>
     {% endfor %}
-</ul>
 {% else %}  
     <p>No Items to pay</p>
 {% endif %}

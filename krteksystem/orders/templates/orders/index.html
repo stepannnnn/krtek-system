@@ -3,11 +3,20 @@
 
 <h1> Select guest </h1>
 {% if guest_list %}
-<ul>
+<table id="indextable">
+    <tr>
+        <th>Guest name</th>
+        <th>To pay</th>
+        <th>Already Paid</th>
+    </tr>
     {% for guest in guest_list %}
-    <li><a href="{% url 'orders:guest_action' guest.id %}">{{ guest.name }}<a></li>
+    <tr onclick="window.location='{% url 'orders:guest_action' guest.id %}'">
+        <td>{{ guest.name }}</td>
+        <td>{{ guest.to_pay }}</td>
+        <td>{{ guest.already_paid }}</td>
+    </tr>
     {% endfor %}
-</ul>
+    </table>
 {% else %}  
     <p>No guests are available.</p>
 {% endif %}

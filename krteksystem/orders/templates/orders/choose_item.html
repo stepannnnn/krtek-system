@@ -3,14 +3,22 @@
 
 {% if items_list %}
 <ul>
+    <table id="ordertable">
+        <tr>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Order?</th>
+        </tr>
     {% for item in items_list %}
-    <li>{{item.name}} for {{item.price|floatformat}} 
-        <form style="display: inline-block" action="{% url 'orders:ordering' guest.id %}" method="post">
-            {% csrf_token %}
-            <input type="hidden" name="item_id" value="{{item.id}}">
-            <input type="submit" value="ORDER">
-        </form>
-    </li>
+        <tr>
+            <td>{{item.name}}</td> 
+            <td>{{item.price|floatformat}}</td>
+            <td><form style="display: inline-block" action="{% url 'orders:ordering' guest.id %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="item_id" value="{{item.id}}">
+                <input class="orderbutton" type="submit" value="ORDER">
+            </form></td>
+        </tr>
     {% endfor %}  
 </ul>
 {% else %}  

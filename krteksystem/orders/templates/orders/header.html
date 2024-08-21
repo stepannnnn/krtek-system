@@ -1,5 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
+
 <header class="header">
     <div id="homebutton"><a href=" {% url 'orders:index' %}"><div>
         <img src="{% static 'orders/img/home-icon.png' %}">
@@ -10,10 +11,11 @@
     </div></a></div>
     {% if guest %}
     <div id="guest">
+        <h4 id="clock"></h4>
         <h2>Guest: {{guest.name}} (ID: {{guest.id}})</h2>
         <br>
-        <p>To pay: {{guest.to_pay}}</p>
-        <p>Already paid: {{guest.already_paid}}</p>
+        <p>To pay: {{guest.to_pay|floatformat}}</p>
+        <p>Already paid: {{guest.already_paid|floatformat}}</p>
     </div>
         {% if request.resolver_match.url_name == 'guest_action' %}
             <nav style="visibility:hidden">
@@ -21,20 +23,22 @@
             <nav>
         {% endif %}
                 <ul>
-                    <li><a href="{% url 'orders:index' %}"><button> Back to guest menu </button></a></li>
                     <li><a href="{% url 'orders:choose_item' guest.id%}"><button>Shop</button></a></li>
                     <li><a href="{% url 'orders:pay' guest.id%}"><button>Pay</button></a></li>
                     <li><a href="{% url 'orders:guest_history' guest.id%}"><button>View my history</button></a></li>
                 </ul>
             </nav>
     {% else %}
+    <div id="guest">
+        <h2 id="clock"></h2>
+    </div>
     <nav style="visibility:hidden">
         <ul>
-            <li><button> Back to guest menu </button></li>
             <li><button>Shop</button></li>
             <li><button>Pay</button></li>
             <li><button>View my history</button></li>
         </ul>
     </nav>
     {% endif %}
+    <script type="text/javascript" src="{% static 'orders/clock.js' %}"></script>
 </header>

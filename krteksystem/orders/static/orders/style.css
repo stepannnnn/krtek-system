@@ -2,17 +2,32 @@ body {
     background-color: aqua;
 }
 
-main {
-    align-items: center;
+* {
+    margin: 0;
+    padding: 0;
 }
+
 main h1{
     text-align: center;
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
+main h2{
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+main p{
+    text-align: center;
+    font-size: large;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
 main input {
-    background-color: #ffbb00;
+    background-color: #ffca38;
     border-width: 2px;
     border-color: black;
     cursor: pointer;
@@ -22,16 +37,108 @@ main input {
     width:50%;
     font-weight: bold;
     margin-top: 5px;
+    margin-left: 25%;
 }
+
+.orderbutton {
+    background-color: #a8e714;
+    border-width: 2px;
+    border-color: black;
+    cursor: pointer;
+    text-align: center;
+    padding: 2px 20px;
+    border-radius: 10px;
+    width:100%;
+    font-weight: bold;
+    margin-top: -2px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+main #ordertable {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    text-align: center;
+    align-items: center;
+    table-layout: auto;
+    width: 45%;
+}
+
+main #ordertable td {
+    width: 15%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ffffff;
+    border-top: 1px solid #ffffff;
+}
+
+main #ordertable tr:hover {
+    background-color: #f5f5f5;
+}
+
+main #indextable {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    text-align: center;
+    align-items: center;
+    table-layout: auto;
+    width: 45%;
+}
+
+main #indextable td {
+    width: 15%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ffffff;
+    border-top: 1px solid #ffffff;
+    cursor: pointer;
+}
+
+main #indextable tr:hover td {
+    background-color: #f5f5f5;
+}
+
+main .historytable {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    text-align: center;
+    align-items: center;
+    table-layout: auto;
+    width: 50%;
+    padding-bottom: 100px;
+}
+
+main .historytable td {
+    width: 15%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ffffff;
+    border-top: 1px solid #ffffff;
+}
+
+main .historytable tr:hover td {
+    background-color: #f5f5f5;
+}
+
+
 
 
 
 header {
     background-color: #c1f6fa;
-    padding: 10px;
+    padding: 0;
     display: grid;
+    padding-left: 10px;
     grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
+    margin: 0px;
+    top: 0px;
+    left: 0px;
+    width: 99.4%;
+    position: sticky;
 }
 
 
@@ -41,16 +148,17 @@ header img {
 }
 
 
-#appname {
+#appname, #appname:link{
     display: inline-block;
-    line-height: 1px;
-
+    color: rgb(41, 41, 102);
 }
+
+
 
 #guest {
     display: inline-block;
     text-align: center;
-    line-height: 1px;
+
 }
 
 #guest p {
@@ -64,6 +172,7 @@ header nav {
     text-align: right;
     line-height: 1px;
     padding-right: 10px;
+    padding-bottom: 5px;
 }
 
 header nav li {
@@ -98,10 +207,10 @@ footer {
     text-align: center;
     display: block;
     margin-top: 20px;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     height: 2.5rem;
-    width: 98%;
+    width: 100%;
 }
 
 footer * {

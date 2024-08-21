@@ -40,4 +40,6 @@ class Orders(models.Model):
     
     def was_placed_today(self):
         return bool(self.time.date() == timezone.now().date())
+    class Meta:
+        verbose_name_plural = "Orders"
     
